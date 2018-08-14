@@ -1,0 +1,51 @@
+#Search with Request URI
+GET product/default/_search?q=*
+
+GET product/default/_search?q=name:lobster
+
+GET product/default/_search?q=tags=Meat AND name:Tuna
+
+GET product/default/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+GET product/default/_search?explain
+{
+  "query": {
+    "term": {
+      "name": "lobster"
+    }
+  }
+}
+
+GET product/default/1/_explain
+{
+  "query": {
+    "term": {
+      "name": "lobster"
+    }
+  }
+}
+
+#Term Level queries
+GET product/default/_search
+{
+  "query": {
+    "term": {
+      "name": "Lobster"
+    }
+  }
+}
+
+#Full Text queries
+GET product/default/_search
+{
+  "query": {
+    "match": {
+      "name": "Lobster"
+    }
+  }
+}

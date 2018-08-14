@@ -1,0 +1,71 @@
+PUT /testindex?pretty
+
+
+PUT /testindex/default/1
+{
+  "name": "Yasra Shakil",
+  "instructor": {
+    "firstname": "Yasra",
+    "lastname": "Shakil"
+  },
+  "price": "200"
+}
+
+POST /testindex/default/1/_update
+{
+  "doc": {"price": "95", "tags": ["elasticsearch"]}
+}
+
+POST /testindex/default/1/_update
+{
+  "script":"ctx._source.price += 10",
+  "upsert": {
+  "name": "Yasra Shakil",
+  "instructor": {
+    "firstname": "Yasra",
+    "lastname": "Shakil"
+  },
+  "price": 200
+}
+}
+
+GET /testindex/default/1
+
+DELETE /testindex/default/1
+
+POST /testindex1/_delete_by_query
+{
+  "query":{
+    "match":{
+      "category":"course"
+    }
+  }
+}
+
+DELETE /testindex
+
+GET /_cat/health?v
+GET /_cat/nodes?v
+GET /_cat/indices?v
+GET /_cat/allocation?v
+GET /_cat/shards?v
+
+GET /product/default/_mapping
+
+PUT /product/default/_mapping
+{
+  "properties":{
+    "discount":{
+      "type": "double"
+    }
+  }
+}
+
+GET /product/_search
+{
+  "query":{
+    "match_all": {}
+  }
+}
+
+

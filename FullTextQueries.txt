@@ -1,0 +1,40 @@
+GET recipe/default/_search
+{
+  "query": {
+    "match": {
+      "title": "Recipe with Pasta"
+    }
+  }
+}
+
+GET recipe/default/_search
+{
+  "query": {
+    "match": {
+      "title": {
+        "query": "Pasta or spaghetti",
+        "operator": "and"
+      }
+    }
+  }
+}
+
+GET recipe/default/_search
+{
+  "query": {
+    "match_phrase": {
+      "title": "Pasta or spaghetti"
+    }
+  }
+}
+
+GET recipe/default/_search
+{
+  "query": {
+    "multi_match": {
+      "query":"Pasta",
+      "fields": ["title","description"]
+      }
+  }
+}
+
